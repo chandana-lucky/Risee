@@ -1,0 +1,21 @@
+
+
+[2025-08-07 03:40:54] Request received: {"user_id":"5"}
+User 5 has 23 completed tasks
+Determined stage 4 for 23 tasks
+Image path: C:\xampp\htdocs\rise\images\stage4_stem.jpg
+ERROR: Image file not found at: C:\xampp\htdocs\rise\images\stage4_stem.jpg
+
+
+[2025-08-07 03:46:17] Request received: {"user_id":"5"}
+User 5 has 23 completed tasks
+Determined stage 4
+Checking image path: C:\xampp\htdocs\rise/images/stage4_stem.jpg
+ERROR: Image file not found at: C:\xampp\htdocs\rise/images/stage4_stem.jpg
+
+
+[2025-08-07 03:46:20] Request received: {"user_id":"5"}
+User 5 has 23 completed tasks
+Determined stage 4
+Checking image path: C:\xampp\htdocs\rise/images/stage4_stem.jpg
+ERROR: Image file not found at: C:\xampp\htdocs\rise/images/stage4_stem.jpg

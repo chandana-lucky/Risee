@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #3a1c0c, #1c1c1c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Georgia', serif;
+    }
+
+    .form-container {
+      width: 300px;
+      padding: 20px;
+      background: transparent;
+      color: orange;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    input {
+      margin-top: 5px;
+      padding: 8px;
+      border-radius: 12px;
+      border: none;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      color: orange;
+    }
+
+    .or {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 12px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .google-btn img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <label>USERNAME</label>
+    <input type="text" id="username" placeholder="Username">
+
+    <label>E-MAIL</label>
+    <input type="email" id="email" placeholder="Enter your E-mail">
+
+    <label>PASSWORD</label>
+    <input type="password" id="password" placeholder="Password">
+
+    <label>CONFIRM-PASSWORD</label>
+    <input type="password" id="confirm" placeholder="Confirm-Password">
+
+    <button onclick="registerUser()">Submit</button>
+
+    <div class="or">OR</div>
+
+    <div class="google-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google">
+      <span>GOOGLE</span>
+    </div>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    function registerUser() {
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirm = document.getElementById('confirm').value;
+      const msg = document.getElementById('message');
+
+      msg.textContent = '';
+
+      if (!username || !email || !password || !confirm) {
+        msg.textContent = 'Please fill in all fields.';
+        msg.style.color = 'red';
+        return;
+      }
+
+      if (password !== confirm) {
+        msg.textContent = 'Passwords do not match.';
+        msg.style.color = 'red';
+        return;
+      }
+
+      fetch('register.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        msg.textContent = data.message;
+        msg.style.color = data.status === 'success' ? 'lightgreen' : 'red';
+      })
+      .catch(error => {
+        msg.textContent = 'Error occurred. Try again.';
+        msg.style.color = 'red';
+      });
+    }
+  </script>
+</body>
+</html>

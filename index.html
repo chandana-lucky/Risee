@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login/Register</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #3a1c0c, #1c1c1c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Georgia', serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .text {
+      color: orange;
+      font-size: 20px;
+    }
+
+    .arrow {
+      width: 0;
+      height: 0;
+      cursor: pointer;
+    }
+
+    .arrow.up {
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 25px solid lightgray;
+    }
+
+    .arrow.down {
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-top: 25px solid orange;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text" id="login-text">LOGIN</div>
+    <div class="arrow up" onclick="select('login')"></div>
+    <div class="arrow down" onclick="select('register')"></div>
+    <div class="text" id="register-text">REGISTER</div>
+  </div>
+
+  <script>
+    function select(option) {
+      const up = document.querySelector('.arrow.up');
+      const down = document.querySelector('.arrow.down');
+
+      if (option === 'login') {
+        up.style.borderBottomColor = 'orange';
+        down.style.borderTopColor = 'lightgray';
+      } else {
+        down.style.borderTopColor = 'orange';
+        up.style.borderBottomColor = 'lightgray';
+      }
+    }
+
+    // Default: REGISTER selected
+    window.onload = () => select('register');
+  </script>
+</body>
+</html>
